@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Video</title>
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/db.css">
+</head>
+<body>
+
+    <div id="dbContainer">
+        <h1>📂 Video salvati</h1>
+
+        <input type="text" id="searchBar" placeholder="🔍 Cerca un video...">
+
+        <table id="videoTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome originale</th>
+                    <th>File ZIP</th>
+                    <th>Apri</th>
+                </tr>
+            </thead>
+            <tbody id="videoList">
+                <tr><td colspan="4">Caricamento...</td></tr>
+            </tbody>
+        </table>
+
+        <a href="./" id="backLink">← Torna alla Home</a>
+    </div>
+
+    <script src="./js/background.js"></script>
+    <script>
+        let allVideos = [];
+
+        async function loadVideos() {
+            try {
+                const res = await fetch('/videos');
+                const videos = await res.json();
+                allVideos = videos;
+                renderVideos(videos);
+            } catch (err) {
+                console.error('Errore caricamento video:', err);
+                document.getElementById('videoList').innerHTML = '<tr><td colspan="4">Errore durante il caricamento</td></tr>';
+            }
+        }
+
+        function renderVideos(videos) {
+            const tbody = document.getElementById('videoList');
+            tbody.innerHTML = '';
+
+            if (!videos || videos.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4">Nessun video presente</td></tr>';
+                return;
+            }
+
+            videos.forEach(v => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${v.id}</td>
+                    <td>${v.originalname}</td>
+                    <td>${v.filename}</td>
+                    <td><a class="video-link" href="/?id=${v.id}">Guarda</a></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Filtro in tempo reale
+        document.getElementById('searchBar').addEventListener('input', e => {
+            const search = e.target.value.toLowerCase();
+            const filtered = allVideos.filter(v =>
+                v.originalname.toLowerCase().includes(search) ||
+                v.filename.toLowerCase().includes(search)
+            );
+            renderVideos(filtered);
+        });
+
+        loadVideos();
+    </script>
+</body>
+</html>

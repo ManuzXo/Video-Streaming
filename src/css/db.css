@@ -1,0 +1,134 @@
+#dbContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 90%;
+    max-width: 900px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 20px;
+    padding: 30px 20px 40px;
+    color: var(--color-neon);
+    text-align: center;
+    box-shadow: 0 0 20px var(--color-shadow);
+    backdrop-filter: blur(6px);
+}
+
+#dbContainer h1 {
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px var(--color-neon), 0 0 30px var(--color-shadow);
+}
+
+/* Search bar */
+#searchBar {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px 15px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    border: 2px solid rgba(0,255,255,0.5);
+    background-color: rgba(0,0,0,0.4);
+    color: var(--color-neon);
+    font-size: 1em;
+    text-align: center;
+    outline: none;
+    box-shadow: 0 0 10px var(--color-shadow);
+}
+
+#searchBar:focus {
+    border-color: var(--color-neon);
+    box-shadow: 0 0 20px var(--color-neon), 0 0 40px var(--color-shadow);
+}
+
+/* Tabella */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0,0,0,0.5);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px var(--color-shadow);
+}
+
+th, td {
+    padding: 15px 10px;
+    border-bottom: 1px solid var(--color-shadow);
+    word-wrap: break-word;
+}
+
+th {
+    background: rgba(0,255,255,0.1);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr:hover {
+    background: rgba(0,255,255,0.1);
+}
+
+a.video-link {
+    color: var(--color-neon);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a.video-link:hover {
+    color: var(--color-neon-alt);
+    text-shadow: 0 0 10px var(--color-neon);
+}
+
+/* Link torna alla home */
+#backLink {
+    display: inline-block;
+    margin-top: 25px;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-shadow: 0 0 10px var(--color-neon);
+}
+
+#backLink:hover {
+    text-shadow: 0 0 20px var(--color-neon);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #dbContainer {
+        padding: 20px 10px;
+    }
+
+    #dbContainer h1 {
+        font-size: 1.8em;
+    }
+
+    th, td {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    #searchBar {
+        width: 100%;
+        font-size: 0.9em;
+    }
+
+    th:nth-child(1), td:nth-child(1) {
+        display: none; /* nasconde la colonna ID su schermi molto piccoli */
+    }
+
+    #dbContainer h1 {
+        font-size: 1.6em;
+    }
+
+    #backLink {
+        font-size: 1em;
+    }
+}

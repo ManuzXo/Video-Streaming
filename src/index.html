@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming Video</title>
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body >
+    <div id="appContainer">
+        <a href="/" id="siteTitle">Streaming Video</a>
+
+        <div id="dropzone">Trascina qui un video oppure clicca per selezionarlo</div>
+
+        <div id="uploadProgress" class="hidden">
+            <div id="progressBar"></div>
+        </div>
+
+        <video id="videoPlayer" controls class="hidden"></video>
+
+        <input type="file" id="fileInput" accept="video/*" style="display:none">
+
+        <div id="videoLinkContainer" class="hidden">
+            <span>Link video:</span>
+            <input type="text" id="videoLink" readonly>
+            <button id="copyBtn">Copia</button>
+        </div>
+    </div>
+
+    <footer id="footerLink">
+        <a href="./db.html">Apri database</a>
+    </footer>
+    
+    <script src="./js/background.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
