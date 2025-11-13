@@ -5,7 +5,7 @@ const multer = require('multer');
 const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Setup SQLite
 const db = new sqlite3.Database('./videos.db');
