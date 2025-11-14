@@ -30,8 +30,10 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, uploadDir),
     filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
 });
-const upload = multer({ storage });
-
+const upload = multer({
+    storage,
+    limits: { fileSize: 1024 * 1024 * 200 } // 200MB
+});
 // Upload video
 app.post('/upload', upload.single('video'), (req, res) => {
     const file = req.file;
